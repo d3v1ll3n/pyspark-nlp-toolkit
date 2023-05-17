@@ -9,6 +9,10 @@ This code demonstrates an NLP preprocessing pipeline using PySpark. The pipeline
 
 Make sure you have the necessary libraries installed before running the code.
 
+## Dataset
+
+Download the [IMDB dataset](https://datasets.imdbws.com/title.basics.tsv.gz).
+
 ## Usage
 
 Import the required libraries:
