@@ -1,39 +1,19 @@
-CC BY-NC-SA 4.0 License
+MIT License
 
-This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
 
-Summary of the License
+The above copyright notice and this permission notice shall be included in 
+all copies or substantial portions of the Software.
 
-The CC BY-NC-SA 4.0 license allows you to share and adapt the licensed material under certain conditions. It is a widely recognized license that promotes openness, collaboration, and the free exchange of knowledge while protecting the rights of the original author.
-
-Key Terms and Conditions
-
-Attribution
-
-When using the licensed material, you must provide appropriate credit to the original author and indicate if any changes were made. This includes providing a link to the license and attributing the author in a reasonable manner. It is essential to respect the original author's contribution and give them proper recognition.
-
-NonCommercial Use
-
-The CC BY-NC-SA 4.0 license prohibits the use of the licensed material for commercial purposes. This means you cannot use the material, directly or indirectly, for financial gain or in any way that generates revenue. The license is designed to encourage non-profit use, educational purposes, personal projects, and other non-commercial endeavors.
-
-ShareAlike
-
-If you remix, transform, or build upon the licensed material, you must distribute your contributions under the same license as the original. This ensures that derivative works or adaptations based on the licensed material maintain the same permissions and freedoms as the original work.
-
-Understanding the License
-
-It is important to review and understand the full text of the CC BY-NC-SA 4.0 license to ensure compliance with the terms and conditions. The license provides legal clarity and outlines the rights and responsibilities associated with using the licensed material.
-
-Using the Licensed Material
-
-When using the licensed material under the CC BY-NC-SA 4.0 license, you have the following permissions:
-
-Share: You are free to copy and redistribute the material in any medium or format.
-Adapt: You can remix, transform, and build upon the material to create new works.
-However, you must abide by the license's conditions, including proper attribution, non-commercial use, and the ShareAlike requirement.
-
-Obtaining a Copy of the License
-
-To view a copy of the CC BY-NC-SA 4.0 license, please visit https://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
-
-This project is licensed under the CC BY-NC-SA 4.0 License. For more details, please see the LICENSE file.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
+THE SOFTWARE.
