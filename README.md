@@ -1,148 +1,43 @@
-# NLP Preprocessing using PySpark
+# PySpark NLP Preprocessing
 
-This code demonstrates an NLP preprocessing pipeline using PySpark. The pipeline includes text normalization, tokenization, stop word removal, lemmatization, term frequency (TF) computation, inverse document frequency (IDF) computation, and word embedding using Word2Vec.
+This repository contains PySpark code for performing natural language processing (NLP) preprocessing tasks. The code leverages PySpark's distributed processing capabilities to handle large-scale datasets and applies various NLP techniques such as normalization, tokenization, stop word removal, lemmatization, TF-IDF computation, and word embedding using Word2Vec.
 
-## Requirements
+## Code Structure
 
-- PySpark
-- NLTK (Natural Language Toolkit)
+The code is organized into separate files based on their functionality:
 
-Make sure you have the necessary libraries installed before running the code.
-
-## Dataset
-
-Download the [IMDB dataset](https://datasets.imdbws.com/title.basics.tsv.gz).
+- `data_loader.py`: Contains functions for loading the dataset using SparkSession and configuring the dataset path.
+- `preprocessing.py`: Implements functions for NLP preprocessing tasks, including normalization, tokenization, stop word removal, lemmatization, and feature extraction using TF-IDF and Word2Vec.
+- `main.py`: Orchestrates the data loading, preprocessing, and displays the preprocessed data.
 
 ## Usage
 
-Import the required libraries:
+To use this code, follow the steps below:
 
-```python
-from pyspark.sql import SparkSession
-from pyspark.ml.feature import CountVectorizer, IDF, StopWordsRemover
-from pyspark.ml.feature import Word2Vec, Word2VecModel
-from pyspark.ml import Pipeline
-from pyspark.sql.functions import udf, lower
-from pyspark.sql.types import ArrayType, StringType
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
-from nltk.tokenize import word_tokenize
-```
-Create a Spark session:
+1. Install the required dependencies:
+   - PySpark: Ensure that you have Apache Spark installed and properly configured.
+   - NLTK: Install the NLTK library and download the required resources.
 
-```python
-spark = SparkSession.builder.appName("NLPPreprocessing").getOrCreate()
-```
+2. Set the dataset path:
+   - Update the `dataset_path` variable in `main.py` with the path to your dataset file.
 
-Set the log level for Spark (OPTIONAL):
+3. Run the code:
+   - Execute `main.py` to perform the NLP preprocessing tasks on the dataset.
+   - The preprocessed data will be displayed in the console.
 
-```python
-spark.sparkContext.setLogLevel("ERROR")
-spark.sparkContext.setLogLevel("WARN")
-```
-Load the dataset:
+## Requirements
 
-```python
-dataset_path = "/path/to/dataset.csv"
-dataset = spark.read.option("header", "true").csv(dataset_path)
-```
+- Apache Spark (https://spark.apache.org)
+- NLTK (https://www.nltk.org)
 
-Select the relevant columns from the dataset:
+## Dataset
 
-```python
-selected_data = dataset.select("titleType", "primaryTitle")
-```
+The code expects a TSV-formatted dataset file containing information about titles. By default, the code filters the dataset to keep only movie titles based on the 'titleType' column.
 
-Filter the dataset to keep only movie titles:
+## Contributing
 
-```python
-movies_data = selected_data.filter(selected_data.titleType == "movie")
-```
-
-Normalize the text:
-
-```python
-normalized_data = movies_data.withColumn("normalizedText", lower(movies_data.primaryTitle))
-```
-
-Tokenize the text using NLTK:
-
-```python
-def nltk_tokenize(text):
-    return word_tokenize(text)
-
-tokenize_udf = udf(nltk_tokenize, ArrayType(StringType()))
-tokenized_data = normalized_data.withColumn("tokens", tokenize_udf(normalized_data.normalizedText))
-```
-
-Remove stop words:
-
-```python
-stopwords = stopwords.words("english")
-stopwords_remover = StopWordsRemover(inputCol="tokens", outputCol="filteredTokens", stopWords=stopwords)
-filtered_data = stopwords_remover.transform(tokenized_data)
-```
-
-Lemmatize the tokens:
-
-```python
-lemmatizer = WordNetLemmatizer()
-
-def lemmatize_tokens(tokens):
-    lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
-    return lemmatized_tokens
-
-lemmatize_udf = udf(lemmatize_tokens, ArrayType(StringType()))
-lemmatized_data = filtered_data.withColumn("lemmatizedTokens", lemmatize_udf(filtered_data.filteredTokens))
-```
-
-Compute term frequency (TF):
-
-```python
-cv = CountVectorizer(inputCol="lemmatizedTokens", outputCol="rawFeatures")
-cv_model = cv.fit(lemmatized_data)
-featurized_data = cv_model.transform(lemmatized_data)
-```
-
-Compute inverse document frequency (IDF):
-
-```python
-idf = IDF(inputCol="rawFeatures", outputCol="features")
-idf_model = idf.fit(featurized_data)
-preprocessed_data = idf_model.transform(featurized_data)
-```
-
-Perform word embedding using Word2Vec:
-
-```python
-word2vec = Word2Vec(vectorSize=100, inputCol="lemmatizedTokens", outputCol="wordVectors")
-word2vec_model = word2vec.fit(lemmatized_data)
-preprocessed_data = word2vec_model.transform(preprocessed_data)
-```
-
-Show the preprocessed data:
-
-```python
-preprocessed_data.show(truncate=False)
-```
-
-Stop the Spark session:
-
-```python
-spark.stop()
-```
-
-Feel free to modify and adapt the code according to your specific requirements.
+Contributions to this project are welcome! If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request.
 
 ## License
 
-This project is licensed under [CC BY-NC-SA license](license). Please refer to the LICENSE file for more details.
-
-
-This project utilizes the following libraries:
-
-- [PySpark](https://spark.apache.org/docs/latest/api/python/index.html) - Apache Spark's Python API
-- [NLTK](https://www.nltk.org/) - Natural Language Toolkit for Python
-- [WordNet](https://wordnet.princeton.edu/) - Lexical database for the English language
-
-For any questions or further information, please contact [Ivarr Vinter](mailto:ivarrvinter@gmail.com).
+This project is licensed under the [MIT License](LICENSE).
